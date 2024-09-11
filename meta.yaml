@@ -1,0 +1,43 @@
+{% set version = "0.1.0" %}
+
+package:
+  name: geometry_drawer           # Name of the package
+  version: "0.1"                  # Version of the package
+
+source:
+  git_url: https://github.com/ddobrinic/geometry_drawer.git  # URL to your GitHub repo
+  git_tag: master          # Git tag to specify the version, or branch name
+
+build:
+  noarch: python
+  number: 0                        # Build number, increment if making changes without changing version
+  script: python setup.py install --single-version-externally-managed --record=record.txt  # Command to build the package (if setup.py is present)
+
+requirements:
+  build:
+    - python >=3.8                 # Specify the minimum Python version required
+    - setuptools                         # Pip is needed if installing via `python -m pip install .`
+  run:
+    - python >=3.8                 # Runtime dependencies
+    - matplotlib >=3.7.5
+    - shapely >=2.0
+
+
+test:
+  imports:
+    - geometry_drawer             # Ensure that your module can be imported after installation
+
+about:
+  home: https://github.com/ddobrinic/geometry_drawer  # URL to the project home page
+  license: MIT                                           # License type
+  license_file: LICENSE                                  # License file in your repo
+  summary: A package for drawing geometries with matplotlib and shapely. # Short description
+  description: |
+    This package provides functions to draw various geometries like points, lines,
+    and polygons using matplotlib. It is designed to simplify the visualization of
+    geometrical shapes and spatial data.
+  dev_url: https://github.com/ddobrinic/geometry_drawer/issues  # Link to issue tracker
+
+extra:
+  recipe-maintainers:
+    - ddobrinic
